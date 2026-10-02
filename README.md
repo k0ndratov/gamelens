@@ -78,7 +78,7 @@ To build the `.exe` you also need `pyinstaller`. `build.bat` installs it.
 ### 1. Get the code
 
 ```bat
-git clone https://github.com/<your-account>/gamelens.git
+git clone https://github.com/k0ndratov/gamelens.git
 cd gamelens
 ```
 
