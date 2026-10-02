@@ -1,0 +1,72 @@
+# GameLens settings.
+#
+# setup.bat copies this file to config.yaml. Edit config.yaml, not this one -
+# config.yaml is yours and is not committed to git. Anything you leave out
+# falls back to the built-in defaults in gamelens/config.py.
+#
+# Note: "calibrate" and the window's Calibrate button rewrite config.yaml and
+# drop these comments. The values are kept.
+
+capture:
+  monitor: 1                 # which screen the game is on (1 = main)
+  region:                    # the subtitle box, as fractions of the screen.
+    left: 0.15               # set it with:  python -m gamelens calibrate
+    top: 0.78
+    width: 0.70
+    height: 0.16
+  fps: 3.0                   # subtitle checks per second; raise if short lines are missed
+  text_threshold: 170        # 0-255. Lower it if subtitles are not read at all,
+                             # raise it if junk is read from bright scenery
+  min_text_fraction: 0.002
+  keep_scene_frames: 4
+  scene_frame_interval: 1.5
+  scene_frame_width: 1280
+
+buffer:
+  minutes: 5                 # how much past dialogue Claude sees with each question
+  dedupe_ratio: 0.88
+  min_line_chars: 3
+
+ocr:
+  backends: [windows, rapidocr, tesseract]   # tried in this order
+  language: en
+
+hotkeys:
+  method: poll               # poll works with games running as administrator
+  talk: <ctrl>+<alt>+q       # hold and ask out loud
+  mode: hold                 # or "toggle": tap to start, tap to stop
+  repeat: <ctrl>+<alt>+w     # explain the last line, no speaking needed
+  stop: <ctrl>+<alt>+s       # cut the answer off
+
+mic:
+  input_device: null         # null = Windows default; an index from "gamelens devices"
+
+stt:                         # speech recognition (local Whisper)
+  model: base.en             # small.en is more accurate but slower
+  device: auto
+  compute_type: int8
+  cpu_threads: 0
+  language: en
+
+voice:                       # the spoken answer (edge-tts)
+  voice: en-GB-RyanNeural    # any name from "python -m gamelens voices"
+  rate: +10%
+  volume: +0%
+  pitch: +0Hz
+  output_device: null        # null = Windows default; an index from "gamelens devices"
+  duck_game_volume: 0.35     # game volume while an answer plays (0-1)
+  beeps: true
+
+model:                       # Claude
+  name: claude-sonnet-4-5    # replaced automatically if your key cannot use it
+  max_tokens: 500
+  attach_screenshot: true    # false = cheaper and faster, worse at "what's going on?"
+
+help:
+  style: plain               # plain | vocab (explains hard words) | russian
+  level: B2                  # your English level, A2-C1
+  default_question: What did they just say? Put it in simpler English.
+  game: The Witcher 3        # naming the game helps with characters and places
+
+log:
+  file: gamelens-session.log

@@ -1,0 +1,35 @@
+# --- secrets: never commit ---------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- personal settings and data ----------------------------------------------
+# config.yaml holds your calibrated subtitle box, devices and voice.
+# New users start from config.example.yaml (setup.bat copies it).
+config.yaml
+usage.json
+screenshots/
+calibration-crop.png
+
+# --- logs ---------------------------------------------------------------------
+*.log
+
+# --- Python -------------------------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# --- build output -------------------------------------------------------------
+build/
+dist/
+*.spec
+
+# --- editors / OS -------------------------------------------------------------
+.vscode/
+.idea/
+.claude/settings.local.json
+Thumbs.db
+Desktop.ini
+.DS_Store

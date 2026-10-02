@@ -1,0 +1,31 @@
+# --- core, always needed ---------------------------------------------------
+mss>=9.0.1                 # fast screen region capture
+Pillow>=10.0.0
+numpy>=1.24
+PyYAML>=6.0
+pynput>=1.7.6              # global hotkeys that work over a fullscreen game
+anthropic>=0.40.0
+
+# --- voice in ---------------------------------------------------------------
+sounddevice>=0.4.6         # microphone capture and playback
+faster-whisper>=1.0.0      # local speech recognition, runs on CPU
+
+# --- voice out --------------------------------------------------------------
+edge-tts>=6.1.0            # natural neural voices, free, no API key
+miniaudio>=1.59            # decodes the mp3 edge-tts returns
+
+# --- OCR: at least one is required -----------------------------------------
+# The Windows built-in engine. Fastest, no model download. Windows 10/11 only.
+winocr>=0.0.13 ; sys_platform == "win32"
+
+# --- optional ---------------------------------------------------------------
+pycaw>=20230407 ; sys_platform == "win32"   # dips game volume while speaking
+comtypes>=1.2.0 ; sys_platform == "win32"
+
+# Alternative OCR, cross-platform, bundles its own ONNX models (slower):
+# rapidocr-onnxruntime>=1.3.0
+# Or Tesseract, if you already have tesseract.exe installed:
+# pytesseract>=0.3.10
+
+# Offline fallback voice (robotic, but needs no internet):
+# pyttsx3>=2.90
